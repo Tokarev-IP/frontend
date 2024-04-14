@@ -11,11 +11,10 @@ import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
-import img from '../../images/film-poster-placeholder.png';
 import { BaseMovie } from "../../types/interfaces";
 
 const styles = {
-    card: { width: 624, borderRadius: 8 },
+    card: { width: 640, borderRadius: 8 },
     media: { height: '100%', borderRadius: '24px 24px 24px 24px' },
     avatar: {
         backgroundColor: "rgb(255, 0, 0)",
