@@ -32,9 +32,7 @@ const MovieHeader: React.FC<MovieT> = (props) => {
             </IconButton>
 
             {isFavorite && (
-                <IconButton aria-label="add to favourites">
-                    <FavoriteIcon color="warning" fontSize="large" />
-                </IconButton>
+               <FavoriteIcon color="warning" fontSize="large" />
             )}
 
             <Typography variant="h4" component="h3">
