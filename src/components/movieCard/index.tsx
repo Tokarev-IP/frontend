@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardMedia from "@mui/material/CardMedia";
@@ -22,7 +22,17 @@ const styles = {
 
 const MAX_OVERVIEW_LINES = 5;
 
-const MovieCard: React.FC<BaseMovie> = (props) => {
+interface MovieCardProps extends BaseMovie {
+    selectFavourite: (movieId: number) => void;
+}
+
+const MovieCard: React.FC<MovieCardProps> = (props) => {
+
+    const handleAddToFavourite = (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        props.selectFavourite(props.id);
+    };
+
     const getTruncatedOverview = (text) => {
         if (text && text.length > MAX_OVERVIEW_LINES * 50) { 
             return text.slice(0, MAX_OVERVIEW_LINES * 50) + '...';
@@ -71,8 +81,8 @@ const MovieCard: React.FC<BaseMovie> = (props) => {
                     </Grid>
                     <Grid item container justifyContent="flex-end">
                         <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites" sx={{ marginRight: '24px' }}>
-                                <FavoriteIcon color="primary" fontSize="large" />
+                            <IconButton aria-label="add to favourites" sx={{ marginRight: '24px' }} onClick={handleAddToFavourite}>
+                                <FavoriteIcon color={props.favourite ? 'warning' : 'primary'} fontSize="large" />
                             </IconButton>
                             <Link to={`/movies/${props.id}`}>
                                 <Button variant="outlined" size="medium" color="primary" sx={{ marginRight: '16px' }} >
