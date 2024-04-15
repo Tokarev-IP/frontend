@@ -1,9 +1,7 @@
-import React from "react";
+import React from 'react';
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -12,16 +10,26 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import { BaseMovie } from "../../types/interfaces";
+import { Link } from "react-router-dom";
 
 const styles = {
-    card: { width: 640, borderRadius: 8 },
+    card: { width: 700, borderRadius: 8 },
     media: { height: '100%', borderRadius: '24px 24px 24px 24px' },
     avatar: {
         backgroundColor: "rgb(255, 0, 0)",
     },
 };
 
+const MAX_OVERVIEW_LINES = 5;
+
 const MovieCard: React.FC<BaseMovie> = (props) => {
+    const getTruncatedOverview = (text) => {
+        if (text && text.length > MAX_OVERVIEW_LINES * 50) { 
+            return text.slice(0, MAX_OVERVIEW_LINES * 50) + '...';
+        }
+        return text;
+    };
+
     return (
         <Card sx={{ ...styles.card }}>
             <Grid container alignItems="center">
@@ -41,9 +49,9 @@ const MovieCard: React.FC<BaseMovie> = (props) => {
                             {props.title}
                         </Typography>
                     </Grid>
-                    <Grid item sx={{ marginBottom: '12px' }}>
+                    <Grid item sx={{ marginBottom: '12px', marginRight: '16px' }}>
                         <Typography variant="body1" component="p">
-                            {props.overview}
+                            {getTruncatedOverview(props.overview)}
                         </Typography>
                     </Grid>
                     <Grid item container justifyContent="flex-start" alignItems="center" spacing={1}>
@@ -53,7 +61,7 @@ const MovieCard: React.FC<BaseMovie> = (props) => {
                                 {props.release_date}
                             </Typography>
                         </Grid>
-                        <Grid item sx={{ marginLeft: '24px' }}> 
+                        <Grid item sx={{ marginLeft: '24px' }}>
                             <Typography variant="subtitle2" component="p">
                                 <StarRateIcon fontSize="small" />
                                 {"  "} {props.vote_average}{" "}
@@ -66,16 +74,17 @@ const MovieCard: React.FC<BaseMovie> = (props) => {
                             <IconButton aria-label="add to favorites" sx={{ marginRight: '24px' }}>
                                 <FavoriteIcon color="primary" fontSize="large" />
                             </IconButton>
-                            <Button variant="outlined" size="medium" color="primary">
-                                More Info ...
-                            </Button>
+                            <Link to={`/movies/${props.id}`}>
+                                <Button variant="outlined" size="medium" color="primary" sx={{ marginRight: '16px' }} >
+                                    More Info ...
+                                </Button>
+                            </Link>
                         </CardActions>
                     </Grid>
                 </Grid>
             </Grid>
         </Card>
     );
-}
-
+};
 
 export default MovieCard;
