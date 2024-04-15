@@ -6,6 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import { MovieT } from "../../types/interfaces";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const styles = {
     root: {
@@ -17,23 +18,35 @@ const styles = {
     },
 };
 
+
 const MovieHeader: React.FC<MovieT> = (props) => {
+
+    const movies = JSON.parse(localStorage.getItem("favourites") || '[]');
+    const isFavorite = movies.some(movie => movie.id === props.id);
 
     return (
         <Paper component="div" sx={styles.root}>
+
             <IconButton aria-label="go back">
                 <ArrowBackIcon color="primary" fontSize="large" />
             </IconButton>
 
+            {isFavorite && (
+                <IconButton aria-label="add to favourites">
+                    <FavoriteIcon color="warning" fontSize="large" />
+                </IconButton>
+            )}
+
             <Typography variant="h4" component="h3">
                 {props.title}{"   "}
                 <a href={props.homepage}>
-                    <HomeIcon color="primary" fontSize="large" />
+                    <HomeIcon color="primary" fontSize="large" sx={{ marginLeft: '16px' }} />
                 </a>
                 <br />
                 <span>{`${props.tagline}`} </span>
             </Typography>
-            <IconButton aria-label="go forward">
+
+            <IconButton aria-label="go forward" >
                 <ArrowForwardIcon color="primary" fontSize="large" />
             </IconButton>
         </Paper>
