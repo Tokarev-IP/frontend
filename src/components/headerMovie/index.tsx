@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
 import { MovieT } from "../../types/interfaces";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { MoviesContext } from "../../contexts/moviesContext";
 
 const styles = {
     root: {
@@ -21,8 +22,10 @@ const styles = {
 
 const MovieHeader: React.FC<MovieT> = (props) => {
 
-    const movies = JSON.parse(localStorage.getItem("favourites") || '[]');
-    const isFavorite = movies.some(movie => movie.id === props.id);
+    const isMovieInFavorites = (): boolean => {
+        const { favourites: movieIds } = useContext(MoviesContext);
+        return movieIds.includes(props.id);
+    };
 
     return (
         <Paper component="div" sx={styles.root}>
@@ -31,7 +34,7 @@ const MovieHeader: React.FC<MovieT> = (props) => {
                 <ArrowBackIcon color="primary" fontSize="large" />
             </IconButton>
 
-            {isFavorite && (
+            {isMovieInFavorites && (
                <FavoriteIcon color="warning" fontSize="large" />
             )}
 

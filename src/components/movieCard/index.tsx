@@ -85,7 +85,7 @@ const MovieCard: React.FC<ListedMovie> = (props) => {
                     <Grid item container justifyContent="flex-end">
                         <CardActions disableSpacing>
                             <IconButton aria-label="add to favourites" sx={{ marginRight: '24px' }} onClick={handleAddToFavourite}>
-                                <FavoriteIcon color={props.favourite ? 'warning' : 'primary'} fontSize="large" />
+                                <FavoriteIcon color={movie.favourite ? 'warning' : 'primary'} fontSize="large" />
                             </IconButton>
                             <Link to={`/movies/${props.id}`}>
                                 <Button variant="outlined" size="medium" color="primary" sx={{ marginRight: '16px' }} >
