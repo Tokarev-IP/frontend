@@ -4,6 +4,7 @@ import Header from "../headerMovieList";
 import FilterCard from "../filterMoviesCard";
 import Grid from "@mui/material/Grid";
 import Fab from "@mui/material/Fab";
+import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieList from "../movieList";
 import { MovieListPageTemplateProps } from "../../types/interfaces";
@@ -46,13 +47,21 @@ function MovieListPageTemplate({ movies, title, selectFavourite }: MovieListPage
                 <Grid item xs={12}>
                     <Header title={title} />
                 </Grid>
-                <Grid item container spacing={5}>
-                    <MovieList
-                        movies={displayedMovies}
-                        selectFavourite={selectFavourite}
-                    />
-                </Grid>
+
+                {displayedMovies.length === 0 ? (
+                    <Grid item xs={12} sx={{ textAlign: 'center', marginTop: '60px' }}>
+                        <Typography variant="h5">There are no movies</Typography>
+                    </Grid>
+                ) : (
+                        <Grid item container spacing={5}>
+                            <MovieList
+                                movies={displayedMovies}
+                                selectFavourite={selectFavourite}
+                            />
+                        </Grid>
+                    )}
             </Grid>
+
             <Fab
                 color="secondary"
                 variant="extended"
@@ -60,7 +69,7 @@ function MovieListPageTemplate({ movies, title, selectFavourite }: MovieListPage
                 sx={styles.fab}
             >
                 Filter
-      </Fab>
+        </Fab>
             <Drawer
                 anchor="left"
                 open={drawerOpen}
