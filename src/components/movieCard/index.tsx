@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useContext } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardMedia from "@mui/material/CardMedia";
@@ -9,8 +9,9 @@ import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
-import { BaseMovie } from "../../types/interfaces";
 import { Link } from "react-router-dom";
+import { MoviesContext } from "../../contexts/moviesContext";
+import { ListedMovie } from "../../types/interfaces";
 
 const styles = {
     card: { width: 700, borderRadius: 8 },
@@ -22,15 +23,17 @@ const styles = {
 
 const MAX_OVERVIEW_LINES = 5;
 
-interface MovieCardProps extends BaseMovie {
-    selectFavourite: (movieId: number) => void;
-}
+const MovieCard: React.FC<ListedMovie> = (props) => {
 
-const MovieCard: React.FC<MovieCardProps> = (props) => {
+    const movie = { ...props, favourite: false };
+    const { favourites, addToFavourites } = useContext(MoviesContext);
+
+    if (favourites.find((id) => id === movie.id))
+        movie.favourite = true;
 
     const handleAddToFavourite = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        props.selectFavourite(props.id);
+        addToFavourites(movie);
     };
 
     const getTruncatedOverview = (text) => {
