@@ -11,7 +11,7 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
 import { MoviesContext } from "../../contexts/moviesContext";
-import { ListedMovie } from "../../types/interfaces";
+import { MovieT } from "../../types/interfaces";
 
 const styles = {
     card: { width: 700, borderRadius: 8 },
@@ -23,18 +23,23 @@ const styles = {
 
 const MAX_OVERVIEW_LINES = 5;
 
-const MovieCard: React.FC<ListedMovie> = (props) => {
+interface MovieListProps {
+    movie: MovieT,
+    action: (m: MovieT) => void;
+}
 
-    const movie = { ...props, favourite: false };
-    const { favourites, addToFavourites } = useContext(MoviesContext);
+const MovieCard: React.FC<MovieListProps> = (props) => {
+
+    const movie = { ...props.movie, favourite: false };
+    const { favourites, addToFavourites, removeFromFavourites } = useContext(MoviesContext);
 
     if (favourites.find((id) => id === movie.id))
         movie.favourite = true;
 
-    const handleAddToFavourite = (e: MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        addToFavourites(movie);
-    };
+    const addOrRemove = () => {
+        if (movie.favourite) { removeFromFavourites(movie) }
+        else { addToFavourites(movie) }
+    }
 
     const getTruncatedOverview = (text) => {
         if (text && text.length > MAX_OVERVIEW_LINES * 50) { 
@@ -47,47 +52,49 @@ const MovieCard: React.FC<ListedMovie> = (props) => {
         <Card sx={{ ...styles.card }}>
             <Grid container alignItems="center">
                 <Grid item xs={4}>
-                    {props.poster_path && (
+                    {props.movie.poster_path && (
                         <CardMedia
                             sx={{ ...styles.media }}
                             component="img"
-                            image={`https://image.tmdb.org/t/p/w500/${props.poster_path}`}
-                            alt={props.title}
+                            image={`https://image.tmdb.org/t/p/w500/${props.movie.poster_path}`}
+                            alt={props.movie.title}
                         />
                     )}
                 </Grid>
                 <Grid item xs={8} container direction="column" spacing={1} sx={{ paddingLeft: '24px', paddingRight: '2px' }}>
                     <Grid item sx={{ marginBottom: '12px' }}>
                         <Typography variant="h5" component="h2">
-                            {props.title}
+                            {props.movie.title}
                         </Typography>
                     </Grid>
                     <Grid item sx={{ marginBottom: '12px', marginRight: '16px' }}>
                         <Typography variant="body1" component="p">
-                            {getTruncatedOverview(props.overview)}
+                            {getTruncatedOverview(props.movie.overview)}
                         </Typography>
                     </Grid>
                     <Grid item container justifyContent="flex-start" alignItems="center" spacing={1}>
                         <Grid item>
                             <Typography variant="subtitle1" component="p">
                                 <CalendarIcon fontSize="small" />
-                                {props.release_date}
+                                {props.movie.release_date}
                             </Typography>
                         </Grid>
                         <Grid item sx={{ marginLeft: '24px' }}>
                             <Typography variant="subtitle2" component="p">
                                 <StarRateIcon fontSize="small" />
-                                {"  "} {props.vote_average}{" "}
+                                {"  "} {props.movie.vote_average}{" "}
                             </Typography>
                         </Grid>
                         <Grid item xs={6} />
                     </Grid>
                     <Grid item container justifyContent="flex-end">
                         <CardActions disableSpacing>
-                            <IconButton aria-label="add to favourites" sx={{ marginRight: '24px' }} onClick={handleAddToFavourite}>
+
+                            <IconButton aria-label="add to favourites" sx={{ marginRight: '24px' }} onClick={ addOrRemove }>
                                 <FavoriteIcon color={movie.favourite ? 'warning' : 'primary'} fontSize="large" />
                             </IconButton>
-                            <Link to={`/movies/${props.id}`}>
+
+                            <Link to={`/movies/${props.movie.id}`}>
                                 <Button variant="outlined" size="medium" color="primary" sx={{ marginRight: '16px' }} >
                                     More Info ...
                                 </Button>

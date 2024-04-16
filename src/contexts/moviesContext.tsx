@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ListedMovie, MovieT } from "../types/interfaces";
+import { ListedMovie } from "../types/interfaces";
 
 interface MovieContextInterface {
     favourites: number[];
