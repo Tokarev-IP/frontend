@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import styles from "./styles";
 import ratings from "./ratingCategories";
 import { MovieT, Review } from "../../types/interfaces";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const ReviewForm: React.FC<MovieT> = (props) => {
     const defaultValues = {
@@ -32,17 +34,22 @@ const ReviewForm: React.FC<MovieT> = (props) => {
     const navigate = useNavigate();
     const context = useContext(MoviesContext);
     const [rating, setRating] = useState(3);
-
+    const [open, setOpen] = useState(false);
 
     const handleRatingChange = (event: ChangeEvent<HTMLInputElement>) => {
         setRating(Number(event.target.value));
+    };
+
+    const handleSnackClose = () => {
+        setOpen(false);
+        navigate("/movies/favourites");
     };
 
     const onSubmit: SubmitHandler<Review> = (review) => {
         review.movieId = props.id;
         review.rating = rating;
         context.addReview(props, review);
-        // console.log(review);
+        setOpen(true);
     };
 
     return (
@@ -50,6 +57,22 @@ const ReviewForm: React.FC<MovieT> = (props) => {
             <Typography component="h2" variant="h3">
                 Write a review
       </Typography>
+            <Snackbar
+                sx={styles.snack}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                open={open}
+                onClose={handleSnackClose}
+            >
+                <Alert
+                    severity="success"
+                    variant="filled"
+                    onClose={handleSnackClose}
+                >
+                    <Typography variant="h4">
+                        Thank you for submitting a review
+                    </Typography>
+                </Alert>
+            </Snackbar>
             <form style={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
                 <Controller
                     name="author"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -9,7 +9,11 @@ import { MovieT } from "../../types/interfaces";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from '../movieReviews'
+import MovieReviews from '../movieReviews';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { MoviesContext } from "../../contexts/moviesContext";
+import RateReviewIcon from "@mui/icons-material/RateReview";
+import { Link } from "react-router-dom";
 
 const styles = {
     chipSet: {
@@ -33,10 +37,20 @@ const styles = {
 
 const MovieDetails: React.FC<MovieT> = (props) => {
     const movie = props;
-    const [drawerOpen, setDrawerOpen] = useState(false); // New
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
+    const { favourites: movieIds } = useContext(MoviesContext);
+
+    const isMovieInFavorites = (): boolean => {
+        return movieIds.includes(movie.id);
+    };
 
     return (
         <>
+            {isMovieInFavorites() && (
+                <FavoriteIcon color="warning" fontSize="large" />
+            )}
+
             <Typography variant="h5" component="h3">
                 Overview
             </Typography>
@@ -80,6 +94,15 @@ const MovieDetails: React.FC<MovieT> = (props) => {
                 ))}
             </Paper>
 
+            <Link
+                to={'/reviews/form'}
+                state={{
+                    movieId: movie.id,
+                }}
+            >
+                <RateReviewIcon color="primary" fontSize="large" />
+            </Link>
+
             <Fab
                 color="secondary"
                 variant="extended"
@@ -88,10 +111,12 @@ const MovieDetails: React.FC<MovieT> = (props) => {
             >
                 <NavigationIcon />
                 Reviews
-      </Fab>
+            </Fab>
+
             <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
                 <MovieReviews {...movie} />
             </Drawer>
+
         </>
     );
 };

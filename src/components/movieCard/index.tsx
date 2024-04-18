@@ -95,7 +95,7 @@ const MovieCard: React.FC<MovieListProps> = (props) => {
                             </IconButton>
 
                             <Link to={`/movies/${props.movie.id}`}>
-                                <Button variant="outlined" size="medium" color="primary" sx={{ marginRight: '16px' }} >
+                                <Button variant="outlined" size="small" color="primary" sx={{ marginRight: '16px' }} >
                                     More Info ...
                                 </Button>
                             </Link>

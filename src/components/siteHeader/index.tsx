@@ -108,8 +108,6 @@ const SiteHeader: React.FC = () => {
                 </Toolbar>
             </AppBar>
             <Offset />
-
-            {/* <div className={classes.offset} /> */}
         </>
     );
 };

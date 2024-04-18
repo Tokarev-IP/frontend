@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ListedMovie } from "../types/interfaces";
+import { ListedMovie, MovieT, Review } from "../types/interfaces";
 
 interface MovieContextInterface {
     favourites: number[];
@@ -15,7 +15,13 @@ const initialContextState = {
 export const MoviesContext = React.createContext<MovieContextInterface>(initialContextState);;
 
 const MoviesContextProvider: React.FC<React.PropsWithChildren> = (props) => {
+
+    const [myReviews, setMyReviews] = useState<Review[]>([])
     const [favourites, setFavourites] = useState<number[]>([]);
+
+    const addReview = (movie, review) => { 
+        setMyReviews({ ...myReviews, [movie.id]: review })
+    };
 
     const addToFavourites = (movie: ListedMovie) => {
         let updatedFavourites = [...favourites];
@@ -25,7 +31,6 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = (props) => {
         setFavourites(updatedFavourites);
     };
 
-    // We will use this function in a later section
     const removeFromFavourites = (movie: ListedMovie) => {
         setFavourites(favourites.filter((mId) => mId !== movie.id));
     };
@@ -36,6 +41,7 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = (props) => {
                 favourites,
                 addToFavourites,
                 removeFromFavourites,
+                addReview, 
             }}
         >
             {props.children}
