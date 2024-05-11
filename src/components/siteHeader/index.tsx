@@ -35,6 +35,7 @@ const SiteHeader: React.FC = () => {
         { label: "Home", path: "/" },
         { label: "Favorites", path: "/movies/favourites" },
         { label: "Upcoming", path: "/movies/upcoming" },
+        { label: "Popular TV", path: "/tv/popular" },
     ];
 
     const handleMenuSelect = (pageURL: string) => {
@@ -49,12 +50,6 @@ const SiteHeader: React.FC = () => {
         <>
             <AppBar sx={styles.appbar} position="fixed" elevation={0} color="success">
                 <Toolbar>
-                    <Typography variant="h4" sx={styles.title}>
-                        TMDB Client
-                    </Typography>
-                    <Typography variant="h6" sx={styles.title}>
-                        All you ever wanted to know about Movies!
-                    </Typography>
                     {isMobile ? (
                         <>
                             <IconButton

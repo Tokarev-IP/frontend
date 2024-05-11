@@ -1,8 +1,5 @@
 import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 const styles = {
@@ -19,7 +16,7 @@ interface HeaderProps {
     title: string;
 }
 
-const Header: React.FC<HeaderProps> = (props) => {
+const TvHeader: React.FC<HeaderProps> = (props) => {
     const title = props.title
 
     return (
@@ -31,4 +28,4 @@ const Header: React.FC<HeaderProps> = (props) => {
     );
 };
 
-export default Header;
+export default TvHeader;
