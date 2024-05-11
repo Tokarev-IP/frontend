@@ -1,14 +1,13 @@
 export interface TvSeriesData {
-    title: string;
+    original_name: string;
     id: number;
     original_language: string;
     overview: string;
-    release_date: string;
+    first_air_date: string;
     vote_average: number;
     popularity: number;
     poster_path?: string;
     vote_count: number;
-    favourite?: boolean;
 }
 
 export interface TvSeriesDataList {
