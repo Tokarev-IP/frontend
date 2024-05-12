@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TvHeader from "../components/TVseriesPage/tvSeriesPageHeader";
-import { TvSeriesData, TvSeriesDataList } from "../types/tv.data.interfaces";
+import { TvSeriesDataList } from "../types/tv.data.interfaces";
 import { getPopularTvSeries } from "../api/tmdb-tv-api";
 import TvSeriesGrid from "../components/TVseriesPage/tvSeriesGrid";
 
@@ -28,10 +28,7 @@ const TvSeriesPage: React.FC = () => {
         <div>
             <TvHeader title="Popular TV series" />
             {tvSeriesDataList && (
-                <TvSeriesGrid tvSeries={tvSeriesDataList.results} action={(tvSeries) => {
-                    // Действие, которое вы хотите выполнить при выборе телесериала
-                    console.log("Selected TV series:", tvSeries);
-                }} />
+                <TvSeriesGrid tvSeries={tvSeriesDataList.results} />
             )}
         </div>
     );
