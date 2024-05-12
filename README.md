@@ -12,9 +12,9 @@ An ability to unfold/fold the data about actors and authors in the EpisodePage. 
 
 ### API endpoints </b>
 
-https://api.themoviedb.org/3/tv/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page} - get list of popular tv series. </b>
-https://api.themoviedb.org/3/tv/${id}?api_key=${import.meta.env.VITE_TMDB_KEY} - get detailed data about tv series. </b>
-https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${import.meta.env.VITE_TMDB_KEY} - get detailed data about season of tv series. </b>
+/3/tv/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page} - get list of popular tv series. </b>
+/3/tv/${id}?api_key=${import.meta.env.VITE_TMDB_KEY} - get detailed data about tv series. </b>
+/3/tv/${id}/season/${season_number}?api_key=${import.meta.env.VITE_TMDB_KEY} - get detailed data about season of tv series. </b>
 
 ### Routing </b>
 
