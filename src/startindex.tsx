@@ -10,10 +10,10 @@ import UpcomingMoviesPage from './pages/upcomingMoviesPage';
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 import MoviesContextProvider from "./contexts/moviesContext";
-import AddMovieReviewPage from './pages/addMovieReviewPage'
-import TvSeriesPage from './pages/TvSeriesPage'
-import TvSeriesDetailsPage from './pages/TVseriesDetailsPage'
-import TvEpisodesPage from './pages/tvEpisodesPage'
+import AddMovieReviewPage from './pages/addMovieReviewPage';
+import TvSeriesPage from './pages/TvSeriesPage';
+import TvSeriesDetailsPage from './pages/TVseriesDetailsPage';
+import TvEpisodesPage from './pages/tvEpisodesPage';
 
 const queryClient = new QueryClient({
     defaultOptions: {
