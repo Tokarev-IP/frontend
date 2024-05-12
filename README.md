@@ -33,3 +33,12 @@ An ability to unfold/fold the data about actors and authors in the EpisodePage. 
 ### Independent learning (If relevant) </b>
 
 I use state as a snapshot (https://react.dev/learn/state-as-a-snapshot) to observe state and update ui. </b>
+
+![image](https://github.com/Tokarev-IP/frontend/assets/61622665/c21c31bb-46cd-4ee8-ae4f-f3666bbffcdf)
+
+![image](https://github.com/Tokarev-IP/frontend/assets/61622665/e4f8a9d3-a483-494b-94b1-b7673dc7ee41)
+
+![image](https://github.com/Tokarev-IP/frontend/assets/61622665/cd728da6-943d-4630-b986-2f4ed8ecc7c6)
+
+![image](https://github.com/Tokarev-IP/frontend/assets/61622665/3eaa7bfb-ef0e-481c-9260-275f80d06225)
+
