@@ -51,7 +51,6 @@ const TvSeriesPage: React.FC = () => {
             {tvSeriesDataList && (
                 <div>
                     <TvSeriesGrid tvSeries={tvSeriesDataList.results} />
-                    <button onClick={loadNextPage}>Load More</button>
                 </div>
             )}
         </div>
