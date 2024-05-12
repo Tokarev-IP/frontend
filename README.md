@@ -1,53 +1,27 @@
-__Name:__ ....your name .....
+Name: Ilia Tokarev
 
-__Video demonstration:__ ..... URL of your YouTube video demonstration ....
+Video demonstration:  https://youtu.be/YMH_XtotVx8
 
 This repository contains an implementation of the Movie Fans Web Application using the ReactJS library. 
 
 ### Features
-[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
-
-+ Feature 1
-+ Feature 2
-+ Feature 3
-+ etc
-+ etc
-
-### Setup requirements.
-
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
+Feature 1
+An ability to change the page of TVseries data.  
+Feature 2
+An ability to unfold/fold the data about actors and authors in the EpisodePage.  
 
 ### API endpoints
 
-[ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
-
-e.g.
-+ Discover list of movies - discover/movie
-+ Movie details - movie/:id
-+ Movie genres = /genre/movie/list
+https://api.themoviedb.org/3/tv/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page} - get list of popular tv series.
+https://api.themoviedb.org/3/tv/${id}?api_key=${import.meta.env.VITE_TMDB_KEY} - get detailed data about tv series.
+https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${import.meta.env.VITE_TMDB_KEY} - get detailed data about season of tv series.
 
 ### Routing
 
-[ List the __new routes__ supported by your app and state the associated page.]
-
-+ /blogs - displays all published blogs.
-+ /blogs/:id - displays a particular blog.
-+ /blogs/:id/comments - detail view of a particular blog and its comments.
-+ etc.
-
-[If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
-
-### Assignment 1 integration
-
-[Describe the level of  integration with the API developed in Assignment 1.]
-
-+ front end deployment
-+ Movie Reviews
-+ Authentication
-+ etc...
+/tv/popular - the page of list of popular tv serials.
+/tv/series/:id - the page to see detailed information about the chosen serial.
+/tv/series/:id/season/:season_number - the page to see all series of the chosen season of seriel.
 
 ### Independent learning (If relevant)
 
-Itemize the technologies/techniques you researched independently and adopted in your project, 
-i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these 
-(we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).
+I use state as a snapshot (https://react.dev/learn/state-as-a-snapshot) to observe state and update ui.
