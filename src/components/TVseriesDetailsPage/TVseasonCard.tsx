@@ -6,6 +6,9 @@ import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import { Seasons } from "../../types/tv.data.interfaces";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const styles = {
     card: { width: 800, borderRadius: 8 },
@@ -62,6 +65,15 @@ const TvSeasonCard: React.FC<TvSeriesDetailsDataProps> = (props) => {
                                 <StarRateIcon fontSize="small" />
                                 {"  "} {props.tvseasonDetails.vote_average}{" "}
                             </Typography>
+                        </Grid>
+                        <Grid item container justifyContent="flex-end">
+                            <CardActions disableSpacing>
+                                <Link to={`/tv/series/${props.tvseasonDetails.id}/season/${props.tvseasonDetails.season_number}`}>
+                                    <Button variant="outlined" size="small" color="primary" sx={{ marginRight: '16px' }} >
+                                        About season ...
+                                </Button>
+                                </Link>
+                            </CardActions>
                         </Grid>
                         <Grid item xs={6} />
                     </Grid>
