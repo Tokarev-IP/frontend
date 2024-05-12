@@ -1,6 +1,6 @@
-export const getPopularTvSeries = () => {
+export const getPopularTvSeries = (page: number) => {
     return fetch(
-        `https://api.themoviedb.org/3/tv/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/tv/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page}`
     ).then((response) => {
         if (!response.ok)
             throw new Error(`Unable to fetch popular tv series. Response status: ${response.status}`);
