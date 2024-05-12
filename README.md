@@ -30,10 +30,6 @@ An ability to unfold/fold the data about actors and authors in the EpisodePage. 
 
 /tv/series/:id/season/:season_number - the page to see all series of the chosen season of seriel. </b>
 
-### Independent learning </b>
-
-I use state as a snapshot (https://react.dev/learn/state-as-a-snapshot) to observe state and update ui. </b>
-
 ### Pictures </b>
 
 ![image](https://github.com/Tokarev-IP/frontend/assets/61622665/c21c31bb-46cd-4ee8-ae4f-f3666bbffcdf)
