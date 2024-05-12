@@ -20,6 +20,7 @@ const styles = {
 
 interface TvSeriesDetailsDataProps {
     tvseasonDetails: Seasons;
+    seriesId: string;
 }
 
 const TvSeasonCard: React.FC<TvSeriesDetailsDataProps> = (props) => {
@@ -68,7 +69,7 @@ const TvSeasonCard: React.FC<TvSeriesDetailsDataProps> = (props) => {
                         </Grid>
                         <Grid item container justifyContent="flex-end">
                             <CardActions disableSpacing>
-                                <Link to={`/tv/series/${props.tvseasonDetails.id}/season/${props.tvseasonDetails.season_number}`}>
+                                <Link to={`/tv/series/${props.seriesId}/season/${props.tvseasonDetails.season_number}`}>
                                     <Button variant="outlined" size="small" color="primary" sx={{ marginRight: '16px' }} >
                                         About season ...
                                 </Button>

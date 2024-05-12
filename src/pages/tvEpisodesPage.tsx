@@ -3,8 +3,7 @@ import TvHeader from "../components/TVseriesPage/tvSeriesPageHeader";
 import { SerialSeasonsData } from "../types/tv.data.interfaces";
 import { getDataAboutSeasonById } from "../api/tmdb-tv-api";
 import { useParams } from "react-router-dom";
-import Typography from "@mui/material/Typography";
-import { TvEpisodesGrid } from '../components/TvEpisodesPage/tvEpisodesGrid';
+import TvEpisodesGrid from "../components/TvEpisodesPage/tvEpisodesGrid";
 
 const TvEpisodesPage: React.FC = () => {
     const [serialSeasonsData, setSerialSeasonsData] = useState<SerialSeasonsData | null>(null);
@@ -29,16 +28,10 @@ const TvEpisodesPage: React.FC = () => {
     return (
         <div >
             <div>
-                <TvHeader title={'1234'} />
+                <TvHeader title={`Season ${season_number}`} />
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Typography variant="h5" component="h2" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '16px', width: 800 }}>
-                        {'1234'}
-                    </Typography>
-                    <Typography variant="h5" component="h2" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '16px', width: 800 }}>
-                        Seasons
-                  </Typography>
                     {serialSeasonsData && (
-                        <TvEpisodesGrid episode={serialSeasonsData.episodes} />
+                        <TvEpisodesGrid episodes={serialSeasonsData.episodes} />
                     )}
                 </div>
             </div>

@@ -40,8 +40,8 @@ const TvSeriesDetailsPage: React.FC = () => {
                   <Typography variant="h5" component="h2" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '16px', width: 800}}>
                       Seasons
                   </Typography>
-                  {tvSeriesDetailsData && (
-                      <AllSeasonsGrid seasons={tvSeriesDetailsData.seasons} />
+                    {tvSeriesDetailsData && (
+                        <AllSeasonsGrid seasons={tvSeriesDetailsData.seasons} id={id} />
                    )}
                 </div>
             </div>
